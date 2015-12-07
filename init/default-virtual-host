@@ -1,0 +1,24 @@
+server {
+    listen 80;
+    root /var/www/web/;
+    rewrite ^/app\.php/?(.*)$ /$1 permanent;
+
+    location / {
+            index app.php;
+            try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+             rewrite ^(.*)$ /app.php/$1 last;
+    }
+
+    location ~ ^/app|app_dev\.php(/|$) {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param HTTPS off;
+            fastcgi_index index.php;
+            internal;
+    }
+}
