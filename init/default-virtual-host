@@ -1,18 +1,18 @@
 server {
     listen 80;
     root /var/www/web/;
-    rewrite ^/app\.php/?(.*)$ /$1 permanent;
+    rewrite ^/app_dev\.php/?(.*)$ /$1 permanent;
 
     location / {
-            index app.php;
+            index app_dev.php;
             try_files $uri @rewriteapp;
     }
 
     location @rewriteapp {
-             rewrite ^(.*)$ /app.php/$1 last;
+             rewrite ^(.*)$ /app_dev.php/$1 last;
     }
 
-    location ~ ^/app|app_dev\.php(/|$) {
+    location ~ ^/app_dev|app\.php(/|$) {
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
             fastcgi_pass unix:/var/run/php5-fpm.sock;
             include fastcgi_params;

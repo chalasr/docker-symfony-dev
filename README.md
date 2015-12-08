@@ -1,38 +1,31 @@
-docker-nginx-php5-fpm
+chalasr/symfony-dev
 ==================
 
-This is the base image with Ubuntu, Nginx and PHP FPM. Docker repository available here [olegpuzanov/docker-nginx-php5-fpm](https://registry.hub.docker.com/u/olegpuzanov/docker-nginx-php5-fpm/).
+Docker image providing Symfony2 production-like environment on Ubuntu, Nginx and PHP FPM.
 
-**Installed Ubuntu version:**
-- 14.04 LTS
+Available on Docker Hub [chalasr/symfony-dev](https://registry.hub.docker.com/u/chalasr/symfony-dev/).
 
-**Installed software:**
+## Image
+
+- Ubuntu 14.04 LTS
 - [Nginx 1.4.6](http://nginx.org/)
 - [PHP FPM 5.5.9](http://www.php.net)
+- git, nano, curl, cli, intl, mcrypt
 
-**Installed tools:**
-- nano
-- curl
-- git
+## Build
 
-**Installed PHP modules:**
-- cli
-- intl
-- mcrypt
-- apcu
-- gd
-- curl
+	docker build -t "chalasr/symfony-dev" .
 
-**Build**
+## Run
 
-	docker build -t "olegpuzanov/nginx-php-fpm" .
+	docker run -t -i -p 8080:80 -d "chalasr/symfony-dev" /bin/bash
 
-**Run**
+## Browse
 
-	docker run -t -i -p 8080:80 -d "olegpuzanov/nginx-php-fpm" /bin/bash
+**Linux**:
 
-**Launch**
+  	http://localhost:8080/
 
-	http://localhost:8080/
+**OS-X** (using docker-machine or boot2docker VM)
 
-Note, if you have used the boot2docker virtual machine, you'll need to get the IP of the virtual host instead of using localhost. You can do this by running the following command `boot2docker ip`.
+	http://container-ip:8080/
