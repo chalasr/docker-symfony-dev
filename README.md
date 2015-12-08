@@ -17,9 +17,7 @@ Available on Docker Hub [chalasr/symfony-dev](https://registry.hub.docker.com/u/
 	docker build -t "chalasr/symfony-dev" .
 
 ## Run
-
-	docker run -t -i -p 8080:80 -d "chalasr/symfony-dev" /bin/bash
-
+        docker run -t -i -p 8080:80 -v /your/symfony/local/path/:/var/www chalasr/symfony-dev /bin/bash
 ## Browse
 
 **Linux**:
