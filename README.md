@@ -17,8 +17,9 @@ Installation
 --------------
 
 ### Pull (Automatic)
+```
 $ docker pull chalasr/symfony-dev
-
+```
 ### Build (Manual)
 
 ```
