@@ -1,7 +1,7 @@
 chalasr/symfony-dev
 ===================
 
-Docker image based on Debian, Nginx and PHP-FPM 7.0 providing a [Symfony2+]([Symfony](https://symfony.com) prod-like environment.
+Docker image based on Debian, Nginx and PHP-FPM 7.0 providing a [Symfony2+](https://symfony.com) prod-like environment.
 
 Available on Docker Hub [chalasr/symfony-dev](https://hub.docker.com/r/chalasr/symfony-dev/).
 
