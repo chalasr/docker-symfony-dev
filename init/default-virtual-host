@@ -3,22 +3,17 @@ server {
     root /var/www/web/;
     rewrite ^/app_dev\.php/?(.*)$ /$1 permanent;
 
+    # Thank's @gnugat (https://gnugat.github.io/2016/04/20/super-speed-sf-nginx.html)
     location / {
-            index app_dev.php;
-            try_files $uri @rewriteapp;
-    }
-
-    location @rewriteapp {
-             rewrite ^(.*)$ /app_dev.php/$1 last;
+        index app_dev.php;
+        try_files $uri /app.php$is_args$args;
     }
 
     location ~ ^/app_dev|app\.php(/|$) {
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            fastcgi_pass unix:/var/run/php5-fpm.sock;
-            include fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            fastcgi_param HTTPS off;
-            fastcgi_index index.php;
-            internal;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        internal;
     }
 }
